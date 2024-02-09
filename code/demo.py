@@ -18,7 +18,6 @@ def on_message(client, userdata, msg):
     global pl1
     global pl2
     global col1,col2,col3
-    # print(msg.topic+" "+str(msg.qos)+" "+str(msg.payload)) 
     decoded_message=str(msg.payload.decode("utf-8")) 
     if "Water" in decoded_message:
         mess= json.loads(decoded_message)
@@ -43,7 +42,7 @@ def client():
     client.subscribe('sho/temp', qos=1)
     return client
     
-    # print("Not")
+
 
 st.set_page_config(
     page_title="Octopuses-Dashboard",
@@ -80,7 +79,7 @@ else:
         "Led":select,
         "Level": level,
     }
-    # st.write(select)
+
     clt = client()
     if st.button('Push'):
         clt.publish("sho/temp",str(mess))
