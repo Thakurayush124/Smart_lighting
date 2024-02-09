@@ -1,18 +1,18 @@
-#include <ESP8266WiFi.h>   // Thư viện dùng để kết nối WiFi của ESP8266
-#include <PubSubClient.h>  // Thư viện dùng để connect, publish/subscribe MQTT
+#include <ESP8266WiFi.h>  
+#include <PubSubClient.h> 
 #include <string.h>
 #include <ArduinoJson.h>
 #include <SoftwareSerial.h>
 
 
-// const char* ssid = "Huflit-GV";         // Tên của mạng WiFi mà bạn muốn kết nối đến
-// const char* password = "gvhuflit@123";   // Mật khẩu của mạng WiFi
+// const char* ssid = "Huflit-GV";       
+// const char* password = "gvhuflit@123";  
 
-// const char* ssid = "Lucid Coffee 2.4G";         // Tên của mạng WiFi mà bạn muốn kết nối đến
-// const char* password = "lucidcoffee";   // Mật khẩu của mạng WiFi
+// const char* ssid = "Lucid Coffee 2.4G";      
+// const char* password = "lucidcoffee"; 
 
-const char* ssid = "Sho0_";         // Tên của mạng WiFi mà bạn muốn kết nối đến
-const char* password = "sownnnnn";  // Mật khẩu của mạng WiFi
+const char* ssid = "Sho0_";       
+const char* password = "sownnnnn"; 
 
 const char* mqttServer = "broker.hivemq.com";
 const int mqttPort = 1883;
@@ -30,13 +30,13 @@ String mode = "auto";
 
 
 
-SoftwareSerial serial_ESP(D2, D3);  //D2 = RX -- D3 = TX
+SoftwareSerial serial_ESP(D2, D3);
 
 #define ledpin D1
 #define motionpin D7
 
 
-char messageBuff[100];  // Biến dùng để lưu nội dung tin nhắn
+char messageBuff[100]; 
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -86,10 +86,10 @@ void loop() {
 }
 
 void startWiFi() {
-  WiFi.begin(ssid, password);  // Kết nối vào mạng WiFi
+  WiFi.begin(ssid, password);  
   Serial.print("Connecting to ");
   Serial.print(ssid);
-  // Chờ kết nối WiFi được thiết lập
+  
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
     Serial.print(".");
@@ -97,7 +97,7 @@ void startWiFi() {
   Serial.println("\n");
   Serial.println("Connection established!");
   Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());  // Gởi địa chỉ IP đến máy tinh
+  Serial.println(WiFi.localIP());  
 }
 
 void connectBroker() {
@@ -106,7 +106,7 @@ void connectBroker() {
 
   while (!client.connected()) {
     Serial.print("Connecting to MQTT...");
-    if (client.connect("ShoPucID")) {  // Kêt nối đến broker thành công
+    if (client.connect("ShoPucID")) { 
       Serial.println("\n");
       Serial.println("MQTT connected");
     } else {
