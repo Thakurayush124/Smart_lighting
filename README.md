@@ -2,7 +2,7 @@
 
 # Topic: An application to control smart lights. 💡💡💡
 
-## Group 5: Octopuses 🐙
+## Group 5: ⚡ILLUMINATORS ⚡
 
 ## 1. Project details:
 
