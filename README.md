@@ -1,4 +1,4 @@
-## huflit-IoT5 - Course Project
+
 
 # Topic: An application to control smart lights. 💡💡💡
 
