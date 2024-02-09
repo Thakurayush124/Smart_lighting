@@ -1,18 +1,18 @@
-#include <ESP8266WiFi.h>   // Thư viện dùng để kết nối WiFi của ESP8266
-#include <PubSubClient.h>  // Thư viện dùng để connect, publish/subscribe MQTT
+#include <ESP8266WiFi.h>   
+#include <PubSubClient.h>  
 #include <string.h>
 #include <ArduinoJson.h>
 #include <SoftwareSerial.h>
 
 
-// const char* ssid = "Huflit-GV";         // Tên của mạng WiFi mà bạn muốn kết nối đến
-// const char* password = "gvhuflit@123";   // Mật khẩu của mạng WiFi
+// const char* ssid = "Huflit-GV";         
+// const char* password = "gvhuflit@123";  
 
-const char* ssid = "Sho0_";         // Tên của mạng WiFi mà bạn muốn kết nối đến
-const char* password = "sownnnnn";  // Mật khẩu của mạng WiFi
+const char* ssid = "Sho0_";         
+const char* password = "sownnnnn";  
 
-// const char* ssid = "Lucid Coffee 2.4G";         // Tên của mạng WiFi mà bạn muốn kết nối đến
-// const char* password = "lucidcoffee";  // Mật khẩu của mạng WiFi
+// const char* ssid = "Lucid Coffee 2.4G";        
+// const char* password = "lucidcoffee";  
 
 const char* mqttServer = "broker.hivemq.com";
 const int mqttPort = 1883;
@@ -20,17 +20,17 @@ const char* mqttUser = "Sho";
 const char* mqttPassword = "1234";
 
 
-const int ledpin = D1;  // Đèn led ở chân GPIO2
+const int ledpin = D1;  
 const int motionpin = D7;
 const String name = "3";
 
-char messageBuff[100];  // Biến dùng để lưu nội dung tin nhắn
+char messageBuff[100]; 
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 void setup() {
-  Serial.begin(9600);  // Khởi tạo kết nối Serial để truyền dữ liệu đến máy tính
+  Serial.begin(9600);  
 
   pinMode(ledpin, OUTPUT);
   pinMode(motionpin, INPUT);
@@ -48,16 +48,15 @@ void loop() {
   if (!client.connected()) {
     connectBroker();
   }
-  // motion = ;
-  // Serial.println("Motion: "+  String(digitalRead(motionpin)));
+ 
   client.loop();
 }
 
 void startWiFi() {
-  WiFi.begin(ssid, password);  // Kết nối vào mạng WiFi
+  WiFi.begin(ssid, password);  
   Serial.print("Connecting to ");
   Serial.print(ssid);
-  // Chờ kết nối WiFi được thiết lập
+ 
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
     Serial.print(".");
@@ -65,7 +64,7 @@ void startWiFi() {
   Serial.println("\n");
   Serial.println("Connection established!");
   Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());  // Gởi địa chỉ IP đến máy tinh
+  Serial.println(WiFi.localIP());  
 }
 
 void connectBroker() {
@@ -74,7 +73,7 @@ void connectBroker() {
 
   while (!client.connected()) {
     Serial.print("Connecting to MQTT...");
-    if (client.connect("BlockyNodeClientID")) {  // Kêt nối đến broker thành công
+    if (client.connect("BlockyNodeClientID")) { 
       Serial.println("\n");
       Serial.println("MQTT connected");
     } else {
